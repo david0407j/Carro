@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Deletar Carro{% endblock %}
+
+{% block content %}
+<style>
+    .delete-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        padding: 20px;
+    }
+
+    .delete-card {
+        max-width: 550px;
+        width: 100%;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .delete-header {
+        background: linear-gradient(135deg, #dc3545, #b02a37);
+        color: white;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .delete-header h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .delete-body {
+        padding: 35px;
+        text-align: center;
+    }
+
+    .delete-body p {
+        color: #555;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    .car-name {
+        color: #dc3545;
+        font-weight: 700;
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .btn-custom {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .3s ease;
+        text-decoration: none;
+    }
+
+    .btn-delete {
+        background: #dc3545;
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background: #bb2d3b;
+        transform: translateY(-2px);
+    }
+
+    .btn-cancel {
+        background: #6c757d;
+        color: white;
+    }
+
+    .btn-cancel:hover {
+        background: #5c636a;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 576px) {
+        .buttons-container {
+            flex-direction: column;
+        }
+
+        .btn-custom {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="delete-container">
+    <div class="delete-card">
+
+        <div class="delete-header">
+            <h1>🗑️ Deletar Carro</h1>
+        </div>
+
+        <div class="delete-body">
+            <p>
+                Tem certeza que deseja excluir o carro
+                <span class="car-name">
+                    {{ object.brand }} {{ object.model }}
+                </span>?
+                <br>
+                Esta ação não poderá ser desfeita.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="buttons-container">
+                    <button type="submit" class="btn-custom btn-delete">
+                        Confirmar Exclusão
+                    </button>
+
+                    <a href="{% url 'cars_list' %}" class="btn-custom btn-cancel">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

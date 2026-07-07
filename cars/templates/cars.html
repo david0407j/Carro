@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    :root {
+        --primary-color: #0096c7;
+        --primary-hover: #0077b6;
+        --bg-color: #f5f7fa;
+        --card-bg: #ffffff;
+        --text-color: #333;
+        --text-muted: #6c757d;
+        --border-color: #e9ecef;
+    }
+
+    .catalog-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    /* Busca */
+    .search-form {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 14px 18px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        transition: .3s;
+    }
+
+    .search-input:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(0,150,199,.15);
+    }
+
+    .search-button {
+        border: none;
+        background: var(--primary-color);
+        color: white;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .search-button:hover {
+        background: var(--primary-hover);
+    }
+
+    /* Grid */
+    .car-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+    }
+
+    /* Card */
+    .car-card {
+        background: var(--card-bg);
+        border-radius: 15px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 5px 15px rgba(0,0,0,.08);
+        transition: .3s;
+    }
+
+    .car-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,.15);
+    }
+
+    .car-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .car-info {
+        padding: 20px;
+    }
+
+    .car-title {
+        margin-bottom: 10px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .car-details {
+        color: var(--text-muted);
+        margin-bottom: 15px;
+    }
+
+    .car-price {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .no-results {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 1.2rem;
+        grid-column: 1 / -1;
+    }
+
+    @media (max-width: 768px) {
+        .search-form {
+            flex-direction: column;
+        }
+
+        .search-button {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="catalog-container">
+
+    <form method="GET" action="{% url 'cars_list' %}" class="search-form">
+
+        <input
+            type="text"
+            name="search"
+            class="search-input"
+            placeholder="Buscar marca ou modelo..."
+            value="{{ request.GET.search }}"
+        >
+
+        <button type="submit" class="search-button">
+            Buscar
+        </button>
+
+    </form>
+
+    <div class="car-grid">
+
+        {% if cars %}
+
+            {% for car in cars %}
+
+            <a href="{% url 'car_detail' car.pk %}" class="car-card">
+
+{% if car.photo %}
+                <img src="{{ car.photo.url }}"
+                     alt="{{ car.brand }} {{ car.model }}">
+                     {% else %}
+                     <p class="no-photo">Sem foto disponível</p>
+
+{% endif %}
+
+                <div class="car-info">
+
+                    <h2 class="car-title">
+                        {{ car.brand }} {{ car.model }}
+                    </h2>
+
+                    <p class="car-details">
+                        Ano de fabricação: {{ car.factory_year }}
+                    </p>
+
+                    <p class="car-price">
+                        R$ {{ car.value }}
+                    </p>
+
+                </div>
+
+            </a>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="no-results">
+                Nenhum carro encontrado.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
