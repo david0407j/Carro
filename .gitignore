@@ -1,26 +1,5 @@
-# Ambiente virtual
-.venv/
 venv/
-
-# Python
-__pycache__/
-*.pyc
-
-# Banco local
-db.sqlite3
-
-# Variáveis de ambiente
-.env
-
-# Editor
+.venv/
 .vscode/
-.idea/
-
-# Arquivos de mídia
 media/
-
-# Arquivos estáticos gerados
-staticfiles/
-
-# Logs
-*.log
+db.sqlite3
