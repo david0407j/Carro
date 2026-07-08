@@ -42,9 +42,13 @@ jobs:
         run: |
           pip install poetry
 
+      - name: Configure Poetry
+        run: |
+          poetry config virtualenvs.create false
+
       - name: Install Dependencies
         run: |
-          poetry install
+          poetry install --no-root
 
       - name: Run Tests
         env:
