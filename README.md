@@ -11,7 +11,7 @@ O sistema possui cadastro de marcas e veículos, armazenamento de fotos, control
 - PostgreSQL
 - SQLite (ambiente de desenvolvimento)
 - HTML, CSS e Bootstrap
-- OpenAI API (geração de textos com IA)
+- Genai API (geração de textos com IA)
 - Deploy AWS
 
 ## Funcionalidades
