@@ -6,22 +6,23 @@ O sistema possui cadastro de marcas e veículos, armazenamento de fotos, control
 
 ## Tecnologias utilizadas
 
-* Python
-* Django
-* PostgreSQL
-* SQLite (ambiente de desenvolvimento)
-* HTML, CSS e Bootstrap
-* OpenAI API (geração de textos com IA)
+- Python
+- Django
+- PostgreSQL
+- SQLite (ambiente de desenvolvimento)
+- HTML, CSS e Bootstrap
+- OpenAI API (geração de textos com IA)
+- Deploy AWS
 
 ## Funcionalidades
 
-* Cadastro de veículos
-* Cadastro de marcas
-* Upload de imagens dos carros
-* Controle de estoque e valores
-* Painel administrativo do Django
-* Organização dos dados com banco de dados relacional
-* Geração automática de descrições de veículos utilizando IA
+- Cadastro de veículos
+- Cadastro de marcas
+- Upload de imagens dos carros
+- Controle de estoque e valores
+- Painel administrativo do Django
+- Organização dos dados com banco de dados relacional
+- Geração automática de descrições de veículos utilizando IA
 
 ## Objetivo
 
