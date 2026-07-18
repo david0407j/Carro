@@ -12,7 +12,8 @@ O sistema possui cadastro de marcas e veículos, armazenamento de fotos, control
 - SQLite (ambiente de desenvolvimento)
 - HTML, CSS e Bootstrap
 - Genai API (geração de textos com IA)
-- Deploy AWS
+- Deploy em servidor Linux (AWS EC2)
+- Nginx + uWSGI para publicação em produção
 
 ## Funcionalidades
 
